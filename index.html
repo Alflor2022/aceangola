@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Desde 2002, a ACE Angola presta serviços de Contabilidade, Auditoria, Assessoria Fiscal e Jurídica, Consultoria Empresarial e Informática em Luanda." />
+  <title>ACE Angola | Contabilidade, Auditoria e Consultoria Empresarial</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Config first, so the theme is set before the page paints (no flash) -->
+  <script src="js/config.js"></script>
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("site-theme"); } catch (e) {}
+      var c = window.SITE_CONFIG && window.SITE_CONFIG.theme;
+      var d = (c && c.default) || "light";
+      if (!t || /[?&]preview=1/.test(location.search)) {
+        t = d === "auto" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : d;
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <!-- Fixed header: logo + menu + social + language -->
+  <header class="site-header" id="site-header">
+    <a class="logo notranslate" id="logo" href="#hero"></a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Menu principal">
+      <ul class="nav-list" id="nav-list"></ul>
+      <div class="nav-social social-icons" id="nav-social"></div>
+    </nav>
+
+    <div class="header-actions">
+      <div class="social-icons" id="social-icons" aria-label="Contactos rápidos"></div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Mudar para modo escuro">
+        <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+      </button>
+      <div class="lang-switcher notranslate" id="lang-switcher"></div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- Hero – horizontal accordion -->
+  <section class="hax-hero" id="hero" aria-label="Introdução"></section>
+
+  <!-- Slide-up project sheets (one per project) -->
+  <div class="hax-projects" id="hax-projects"></div>
+  <!-- Slide-up blog articles -->
+  <div class="hax-projects" id="blog-sheets"></div>
+
+  <!-- Page sections: order, visibility and background come from config "sections"
+       (admin.html → Secções da página). Custom sections are added here by main.js. -->
+  <main class="page-sections" id="page-sections">
+    <section class="page-section" id="projects" data-section="projects">
+      <div class="page-inner">
+        <div id="projects-header" class="section-header" data-reveal></div>
+        <div class="projects-grid" id="projects-grid"></div>
+      </div>
+    </section>
+
+    <section class="why-section" id="why" data-section="why"></section>
+
+    <section class="contact-section" id="contact" data-section="contact">
+      <div class="contact-inner">
+        <div id="contact-header" class="section-header" data-reveal></div>
+
+        <div class="contact-grid">
+          <div class="form-card" data-reveal>
+            <form id="contact-form" novalidate></form>
+          </div>
+          <div data-reveal style="--d:.12s">
+            <div class="map-wrap" id="map-wrap"></div>
+            <p class="map-address" id="map-address"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" id="sec-video" data-section="video">
+      <div class="page-inner"><div class="video-block" id="video"></div></div>
+    </section>
+
+    <section class="page-section" id="sec-blog" data-section="blog">
+      <div class="page-inner"><div class="blog-block" id="blog"></div></div>
+    </section>
+
+    <section class="page-section" id="sec-testimonials" data-section="testimonials">
+      <div class="page-inner">
+        <div class="testimonials" id="testimonials" aria-roledescription="carousel">
+          <div class="testimonials-head" data-reveal>
+            <div id="testimonials-header"></div>
+          </div>
+          <div data-reveal style="--d:.12s">
+            <!-- arrows sit on the left / right of the cards -->
+            <div class="t-stage">
+              <button class="t-arrow t-arrow--prev" type="button" data-dir="-1" aria-label="Anterior">
+                <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+              </button>
+              <div class="t-viewport" tabindex="0">
+                <div class="t-track" id="testimonials-track"></div>
+              </div>
+              <button class="t-arrow t-arrow--next" type="button" data-dir="1" aria-label="Seguinte">
+                <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <div class="t-dots" id="testimonials-dots"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" id="sec-actions" data-section="actions">
+      <div class="page-inner"><div class="actions-block" id="actions"></div></div>
+    </section>
+
+    <section class="page-section" id="sec-follow" data-section="follow">
+      <div class="page-inner"><div class="follow-block" id="follow"></div></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand notranslate" id="footer-brand"></div>
+        <p class="footer-extra" id="footer-extra"></p>
+      </div>
+      <div class="footer-col">
+        <h4 id="footer-nav-title"></h4>
+        <nav class="footer-links" id="footer-links"></nav>
+      </div>
+      <div class="footer-col">
+        <h4 id="footer-contact-title"></h4>
+        <nav class="footer-links">
+          <a href="#" id="footer-email">Email</a>
+          <a href="#" id="footer-phone">Telefone</a>
+          <a href="#" id="footer-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+          <span id="footer-address"></span>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footer-copy"></span>
+      <span id="footer-bottom-text"></span>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-float" id="whatsapp-float" href="#" aria-label="WhatsApp">
+    <span class="whatsapp-tooltip">WhatsApp</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Hidden Google Translate host (driven by the language switcher) -->
+  <div id="google_translate_element" aria-hidden="true"></div>
+
+  <!-- config.js is loaded in <head> -->
+  <script src="js/main.js"></script>
+</body>
+</html>

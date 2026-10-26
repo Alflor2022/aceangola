@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin | ACE Angola</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <header class="adm-top">
+    <div class="adm-brand">
+      <span class="adm-brand-mark">A</span>
+      <span>
+        <strong>Admin do site</strong>
+        <small id="adm-file-name">js/config.js</small>
+      </span>
+    </div>
+
+    <span class="adm-status" id="adm-status" data-state="saved">Tudo guardado</span>
+
+    <div class="adm-actions">
+      <button class="adm-btn adm-btn--ghost" id="btn-open" type="button" title="Abrir o ficheiro de conteúdo para o poder gravar diretamente">Abrir config.js</button>
+      <div class="adm-menu">
+        <button class="adm-btn adm-btn--ghost" id="btn-more" type="button" aria-haspopup="true">Mais ▾</button>
+        <div class="adm-menu-list" id="more-menu">
+          <button type="button" id="btn-download">Descarregar config.js</button>
+          <button type="button" id="btn-export">Exportar cópia (JSON)</button>
+          <button type="button" id="btn-import">Importar cópia (JSON)</button>
+          <button type="button" id="btn-reset" class="is-danger">Descartar alterações</button>
+        </div>
+      </div>
+      <button class="adm-btn adm-btn--primary" id="btn-save" type="button">Guardar config.js</button>
+      <button class="adm-btn adm-btn--ghost adm-preview-toggle" id="btn-preview" type="button">Pré-visualizar</button>
+    </div>
+    <input type="file" id="import-file" accept=".json,application/json" hidden />
+  </header>
+
+  <div class="adm-banner" id="adm-banner" hidden>
+    <span>Há alterações de uma sessão anterior que ainda não foram guardadas.</span>
+    <button class="adm-btn adm-btn--primary" id="btn-restore" type="button">Recuperar</button>
+    <button class="adm-btn adm-btn--ghost" id="btn-discard" type="button">Descartar</button>
+  </div>
+
+  <div class="adm-layout">
+    <nav class="adm-nav" id="adm-nav" aria-label="Secções"></nav>
+
+    <main class="adm-editor" id="adm-editor"></main>
+
+    <aside class="adm-preview" id="adm-preview">
+      <div class="adm-preview-bar">
+        <span>Pré-visualização</span>
+        <div class="adm-devices" role="group" aria-label="Tamanho">
+          <button type="button" data-device="desktop" class="is-active" title="Desktop">Desktop</button>
+          <button type="button" data-device="tablet" title="Tablet">Tablet</button>
+          <button type="button" data-device="mobile" title="Mobile">Mobile</button>
+        </div>
+        <button type="button" class="adm-icon-btn" id="btn-reload" title="Recarregar">⟳</button>
+        <a class="adm-icon-btn" href="index.html" target="_blank" rel="noopener" title="Abrir o site publicado">↗</a>
+      </div>
+      <div class="adm-frame-wrap" id="frame-wrap">
+        <iframe id="preview-frame" title="Pré-visualização do site"></iframe>
+      </div>
+    </aside>
+  </div>
+
+  <div class="adm-toast" id="adm-toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
